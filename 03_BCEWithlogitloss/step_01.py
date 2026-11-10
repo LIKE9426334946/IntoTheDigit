@@ -2,7 +2,7 @@
 #  用来观察BCEWithLogitsLoss是如何传播梯度的
 # 定义一层卷积网络
 
-# CrossEntropyLoss对于四维输入，要求：
+# BCEWithLogitsLoss对于四维输入，要求：
 输入(N,C,H,W)
 标签(N,1,H,W)
 
