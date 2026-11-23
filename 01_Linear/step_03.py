@@ -11,6 +11,8 @@ t = torch.randint(0, 10, (3, 3))
 # 构造一个简单的损失函数
 loss = ((y - t) ** 2).sum()
 
-grad = torch.autograd.grad(outputs=y, inputs=x, grad_outputs=torch.ones_like(y), retain_graph=True)
-
+grad_x = torch.autograd.grad(outputs=y, inputs=x, grad_outputs=torch.ones_like(y), retain_graph=True)
+grad_W = torch.autograd.grad(outputs=y, inputs=W, grad_outputs=torch.ones_like(y), retain_graph=True)
 loss.backward()
+
+print("结束")
