@@ -26,11 +26,14 @@ print("x_2的形状为", x_2.shape)
 target = torch.randint(0, 10, (2, 4)).float()
 criterion = nn.MSELoss()
 loss = criterion(x_2, target)
-grad_loss_x2 = torch.autograd.grad(outputs=loss, inputs=x_2, retain_graph=True)[0]
-grad = torch.autograd.grad(outputs=x_2, inputs=inter, grad_outputs=grad_loss_x2, retain_graph=True)
+# grad_loss_x2 = torch.autograd.grad(outputs=loss, inputs=x_2, retain_graph=True)[0]
+# grad = torch.autograd.grad(outputs=x_2, inputs=inter, grad_outputs=grad_loss_x2, retain_graph=True)
+grad = torch.autograd.grad(outputs=x_2.sum(), inputs=inter, retain_graph=True)
+grad = torch.autograd.grad(outputs=x_2, inputs=inter, grad_outputs=torch.ones_like(x_2), retain_graph=True)
+print(f"{grad=}")
 inter.grad = None
 x_2.grad = None
 
-loss.backward() 
+loss.backward()
 
 print("结束")
